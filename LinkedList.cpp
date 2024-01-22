@@ -1,13 +1,14 @@
 #include <iostream>
 
 
+struct Node {
 
+	//Create the data type and the node pointer
 
+	int data;
+	struct Node* next;
 
-
-
-
-
+};
 
 
 
@@ -21,9 +22,50 @@
 int main() {
 
 
+	//Create the first pointer in the stack
+	struct Node* first;
+
+
+	//Create a node inside of the heap, assign it to the first pointer
+	//Use arrow operator to access members of a node 
+	first = new Node;
+
+	//access members
+	first->data = 5;
+
+	//We should assign the next node with the new node in order to continue the link
+	first->next = new Node;
+	
+
+	//In order to call the data members of the second node we need to refer to the first node to do it
+	first->next->data = 25;
+	first->next->next = 0;
 
 
 
+
+	//Assign a new pointer to point at exactly where the first pointer of the linked list is pointing at 
+	//This way we can traverse through the linkedlist with a second pointer
+	struct Node* p = first;
+	
+
+	//Create a while loop that continues only if the next node pointing is pointing at another node and is not null
+	int count = 0;
+
+	while (p != NULL) {
+		
+		//Count how many nodes there are
+		count++;
+		
+		//First print the value that is being pointed at by the first node
+		std::cout << "Value of Node " << count << " is: " << p->data << '\n';
+
+		//Store the value of p->next to point to the next node, since its in a while loop it will go until
+		//There are no more nodes left
+		p = p->next;
+
+
+	};
 
 
 
@@ -49,7 +91,29 @@ int main() {
 
 /*
 ---------------------------------------------------------------------------------------------------
+A link list is comprised of self referential structures
 
+
+struct Node{
+
+int data;
+
+struct Node *next;
+
+
+
+//q=p; this means that q will be pointing on the same node as p
+	//q =p->next, q will be pointing to the next node just like p-> next
+	// p = p->next, means p wil move to the next node
+	//struct Node *p = NULL, makes the pointer p null
+	//0 = false, non-0 = true
+	//if (p == NULL) determine if P is null or not
+	//if (p != NULL)
+	//if (p ->next == NULL) this will detemrine if P is pointing to another node or not
+
+
+
+}
 
 
 
