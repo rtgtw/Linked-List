@@ -192,11 +192,55 @@ int minNodeInLinkedList(struct Node* p) {
 
 			min = p->data;
 		}
-
 		p = p->next;
 	}
 	return min;
 };
+
+
+//Linear search v1 of a linked list
+//We are going to have the node itself returned which will be an address
+//We are going to be searching for a value within the node (the key)
+
+struct Node* linearSearchLinkedList(struct Node* p, int key) {
+
+	//Traverse through the linked list
+	while (p != NULL) {
+
+		if (key == p->data) {
+
+			std::cout << "Key Found " << '\n';
+
+			//if we find the node that is equal to the data then return the node itself (the address)
+			return p;
+		}
+		else {
+
+			//if we do not find the key within the node, then traverse to the next node
+			p = p->next;
+		}
+	}
+
+	//If we traversed through the linked list and still have not found the key, then return null
+	//indicating that the key value was not present within the linked list
+	std::cout << "Key not found " << '\n';
+	return NULL;
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
@@ -215,6 +259,7 @@ int main() {
 	std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
 	std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
 	std::cout << "Min node: " << minNodeInLinkedList(first) << '\n';
+	linearSearchLinkedList(first, 12);
 
 
 
