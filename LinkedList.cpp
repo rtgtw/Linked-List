@@ -30,9 +30,42 @@ void Display(struct Node *p) {
 
 
 	};
-
-
 };
+
+
+void DisplayLinkedListRecursively(struct Node* p) {
+
+	//Recursively iterate through a Linked List and display the elements
+
+	if (p != NULL) {
+		//display the data in the first element
+		std::cout << "Value is: " << p->data << '\n';
+
+
+		//call the function again but this time direct it to the next of the current node
+		DisplayLinkedListRecursively(p->next);
+	}
+};
+
+
+
+
+void DisplayLinkedListInReverseRecursively(struct Node* p) {
+
+	//Recursively iterate through a Linked List and display the elements
+
+	if (p != NULL) {
+
+		//call the function first so the value is printed on the return to make it reverse
+		DisplayLinkedListRecursively(p->next);
+	}
+		//display the data in the first element
+		std::cout << "Value is: " << p->data << '\n';
+
+
+	}
+};
+
 
 
 
@@ -89,13 +122,18 @@ void create(int A[], int n) {
 
 
 
+
+
+
+
+
 int main() {
 
 	int A[] = { 3,5,7,10,15 };
 
 	create(A, 5);
-	Display(first);
-
+	//Display(first);
+	DisplayLinkedListRecursively(first);
 
 
 
