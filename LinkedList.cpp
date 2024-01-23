@@ -163,10 +163,13 @@ int sumOfLinkedListRecursively(struct Node* p) {
 
 int maxNodeInLinkedList(struct Node* p) {
 
-	int max = 0;
+	//Set max to the first node value inside of the linked list
+	int max = p->data;
 
+	//Create a while loop that stops at the final node in the linked list
 	while (p != NULL) {
 
+		//If a value is greater than the max value (first node's value) change the max to that new value
 		if (p->data > max) {
 
 			max = p->data;
@@ -177,14 +180,32 @@ int maxNodeInLinkedList(struct Node* p) {
 	return max;
 };
 
+int minNodeInLinkedList(struct Node* p) {
+	//Set min to the first node value inside of the linked list
+	int min = p->data;
+
+	//Create a while loop that stops at the final node in the linked list
+	while (p != NULL) {
+
+		//If a value is greater than the max value (first node's value) change the max to that new value
+		if (p->data < min) {
+
+			min = p->data;
+		}
+
+		p = p->next;
+	}
+	return min;
+};
+
 
  
 
 
 int main() {
 
-	int A[] = { 3,5,7,10,15,8,12,20};
-	createLinkedList(A, 8);
+	int A[] = { 3,5,7,10,15,8,12,20,2};
+	createLinkedList(A, 9);
 	//display(first);
 	//displayLinkedListRecursively(first);
 	//displayLinkedListInReverseRecursively(first);
@@ -193,7 +214,7 @@ int main() {
 	//sumOfLinkedList(first);
 	std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
 	std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
-
+	std::cout << "Min node: " << minNodeInLinkedList(first) << '\n';
 
 
 
