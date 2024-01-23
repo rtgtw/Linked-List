@@ -208,28 +208,44 @@ struct Node* linearSearchLinkedList(struct Node* p, int key) {
 	while (p != NULL) {
 
 		if (key == p->data) {
-
 			std::cout << "Key Found " << '\n';
-
 			//if we find the node that is equal to the data then return the node itself (the address)
 			return p;
 		}
 		else {
-
 			//if we do not find the key within the node, then traverse to the next node
 			p = p->next;
 		}
 	}
-
 	//If we traversed through the linked list and still have not found the key, then return null
 	//indicating that the key value was not present within the linked list
 	std::cout << "Key not found " << '\n';
 	return NULL;
 
-
 };
 
+struct Node* linearSearchLinkedListRecursively(struct Node* p, int key) {
 
+	//Recursively iterate through a linked list to find the key
+	//If the function reaches the final node which is not linked to anything, then return
+	//Null to signify the key was not found
+	if (p == NULL) {
+
+		std::cout << "Key not found " << '\n';
+		return NULL;
+	}
+	
+	//if the key was found within the node then return the node
+	if (key == p->data) {
+
+		std::cout << "Key Found " << '\n';
+		return p;
+	}
+
+	//if not then we want to use a recurisve function to go to the nextnode
+
+	return linearSearchLinkedListRecursively(p->next, key);
+};
 
 
 
@@ -259,7 +275,8 @@ int main() {
 	std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
 	std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
 	std::cout << "Min node: " << minNodeInLinkedList(first) << '\n';
-	linearSearchLinkedList(first, 12);
+	//linearSearchLinkedList(first, 12);
+	linearSearchLinkedListRecursively(first, 99);
 
 
 
