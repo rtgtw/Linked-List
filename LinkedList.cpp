@@ -11,7 +11,7 @@ struct Node {
 }*first = NULL;
 
 
-void Display(struct Node *p) {
+void displayLinkedList(struct Node *p) {
 
 	//Create a while loop that continues only if the next node pointing is pointing at another node and is not null
 	while (p != NULL) {
@@ -33,7 +33,7 @@ void Display(struct Node *p) {
 };
 
 
-void DisplayLinkedListRecursively(struct Node* p) {
+void displayLinkedListRecursively(struct Node* p) {
 
 	//Recursively iterate through a Linked List and display the elements
 
@@ -43,22 +43,22 @@ void DisplayLinkedListRecursively(struct Node* p) {
 
 
 		//call the function again but this time direct it to the next of the current node
-		DisplayLinkedListRecursively(p->next);
+		displayLinkedListRecursively(p->next);
 	}
 };
 
 
 
 
-void DisplayLinkedListInReverseRecursively(struct Node* p) {
+void displayLinkedListInReverseRecursively(struct Node* p) {
 
 	//Recursively iterate through a Linked List and display the elements
 
 	if (p != NULL) {
 
 		//call the function first so the value is printed on the return to make it reverse
-		DisplayLinkedListRecursively(p->next);
-	}
+		displayLinkedListInReverseRecursively(p->next);
+	
 		//display the data in the first element
 		std::cout << "Value is: " << p->data << '\n';
 
@@ -71,7 +71,7 @@ void DisplayLinkedListInReverseRecursively(struct Node* p) {
 
 
 
-void create(int A[], int n) {
+void createLinkedList(int A[], int n) {
 
 	int i;
 	
@@ -111,13 +111,21 @@ void create(int A[], int n) {
 
 
 	 }
-
-
-
 }
 
 
+int countOfLinkedList(struct Node* p) {
 
+	int count = 0;
+
+	while (p != NULL) {
+		count++;
+		p = p->next;
+
+	}
+
+	return count;
+}
 
 
 
@@ -131,11 +139,11 @@ int main() {
 
 	int A[] = { 3,5,7,10,15 };
 
-	create(A, 5);
-	//Display(first);
-	DisplayLinkedListRecursively(first);
-
-
+	createLinkedList(A, 5);
+	//display(first);
+	//displayLinkedListRecursively(first);
+	//displayLinkedListInReverseRecursively(first);
+	std::cout << "Number of nodes: " << countOfLinkedList(first);
 
 
 	return 0;
