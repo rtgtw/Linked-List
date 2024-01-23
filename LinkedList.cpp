@@ -15,16 +15,18 @@ struct Node {
 
 void displayLinkedList(struct Node *p) {
 
+	int count = 0;
+
 	//Create a while loop that continues only if the next node pointing is pointing at another node and is not null
 	while (p != NULL) {
 
-		int count = 0;
+		
 
 		//Count how many nodes there are
 		count++;
 
 		//First print the value that is being pointed at by the first node
-		std::cout << "Value of Node " << count << " is: " << p->data << '\n';
+		std::cout << "Node Number: " << count << " Node Value: " << p->data << '\n';
 
 		//Store the value of p->next to point to the next node, since its in a while loop it will go until
 		//There are no more nodes left
@@ -249,6 +251,64 @@ struct Node* linearSearchLinkedListRecursively(struct Node* p, int key) {
 
 
 
+struct Node* linearSearchLinkedListMoveToHead(struct Node* p, int key) {
+
+	//In order to preform a move to head, we needa second pointer that will be following the p pointer
+	//this way the second pointer can keep track of the previous pointer when we find the key
+	//So we can move p to head, we want to set the new pointer to null at first
+	struct Node* q = NULL;
+
+
+	//Iterate through the linked list as normal
+	while (p != NULL) {
+
+		if (key == p->data) {
+
+			//this works because first pointer is global
+			q->next = p->next;
+			p->next = first;
+			first = p;
+			
+			std::cout << "Key Found: " << p->data << " moving to head." << '\n';
+			return p;
+		}
+
+		//If the key is not present inside of the node, then before moving to the next node
+		//We have to assign q the value of node p in order to keep track of the previous node
+		//then we can move p forward
+		q = p;
+
+		//now that our second node q is assigned to p, we can move p foward and continue checking
+		p = p->next;
+
+	}
+
+
+
+	std::cout << "Key not found " << '\n';
+	return NULL;
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -264,19 +324,54 @@ struct Node* linearSearchLinkedListRecursively(struct Node* p, int key) {
 
 int main() {
 
-	int A[] = { 3,5,7,10,15,8,12,20,2};
-	createLinkedList(A, 9);
-	//display(first);
+	//struct Node* temp;
+
+	//int A[] = { 3,5,7,10,15,8,12,20,2};
+	//createLinkedList(A, 9);
+	//displayLinkedList(first);
 	//displayLinkedListRecursively(first);
 	//displayLinkedListInReverseRecursively(first);
 	//std::cout << "Number of nodes: " << countOfLinkedList(first);
-	std::cout << "Number of nodes: " << countOfLinkedListRecursively(first) << '\n';
+	//std::cout << "Number of nodes: " << countOfLinkedListRecursively(first) << '\n';
 	//sumOfLinkedList(first);
-	std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
-	std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
-	std::cout << "Min node: " << minNodeInLinkedList(first) << '\n';
+	//std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
+	//std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
+	//std::cout << "Min node: " << minNodeInLinkedList(first) << '\n';
 	//linearSearchLinkedList(first, 12);
-	linearSearchLinkedListRecursively(first, 99);
+	//linearSearchLinkedListRecursively(first, 99);
+	//linearSearchLinkedListMoveToHead(first, 10);
+	//displayLinkedList(first);
+
+
+
+
+
+
+
+
+
+
+	//Linear Search on a linked list w/ move to head capabilities
+	int A[] = { 3,5,7,10,15,8,12,20,2 };
+	createLinkedList(A, 9);
+	displayLinkedList(first);
+	linearSearchLinkedListMoveToHead(first, 20);
+	displayLinkedList(first);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
