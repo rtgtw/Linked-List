@@ -128,6 +128,18 @@ int countOfLinkedList(struct Node* p) {
 }
 
 
+int countOfLinkedListRecursively(struct Node* p) {
+
+
+	
+	if (p == 0) {
+		return 0;
+	}
+
+	else
+		return  countOfLinkedListRecursively(p->next) + 1 ;
+
+}
 
 
 
@@ -143,8 +155,8 @@ int main() {
 	//display(first);
 	//displayLinkedListRecursively(first);
 	//displayLinkedListInReverseRecursively(first);
-	std::cout << "Number of nodes: " << countOfLinkedList(first);
-
+	//std::cout << "Number of nodes: " << countOfLinkedList(first);
+	std::cout << "Number of nodes: " << countOfLinkedListRecursively(first);
 
 	return 0;
 }
