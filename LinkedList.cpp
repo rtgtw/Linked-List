@@ -294,48 +294,62 @@ struct Node* linearSearchLinkedListMoveToHead(struct Node* p, int key) {
 
 
 void insertIntoLinkedList(struct Node* p, int position, int value) {
-	//There are two insertion points, the first node
-	//And every node after the first node
 
-	//Assign Node P to first in order to represent the first node
-	p = first;
+	//Check if the position is a valide index
+	if (position < 0 || position > countOfLinkedList(p)) {
 
-	//First node
-	if (position == 0) {
-
-	std::cout << "Inserting into Linked List -- Position was the first one" << '\n';
-
-		//Create a new node
-		struct Node* t = new struct Node;
-
-		//Assign it the value given
-		t->data = value;
-
-		//the new node's next should be first
-		//first should be the new node
-		t->next = first;
-		first = t;
+		std::cout << "INVALID INDEX" << '\n';
+	
 	}
-	else if (position > 0) {
+	else {
 
-		for (int i = 0; i < position - 1 && p != NULL; i++) {
 
-			p = p->next;
 
-		}
-		if (p != NULL) {
-			
-			std::cout << "Inserting into Linked List -- Position was greater than 0" <<'\n';
+		//There are two insertion points, the first node
+		//And every node after the first node
 
+		//Assign Node P to first in order to represent the first node
+		p = first;
+
+		//First node
+		if (position == 0) {
+
+			std::cout << "Inserting into Linked List -- Position was the first one" << '\n';
+
+			//Create a new node
 			struct Node* t = new struct Node;
-			//insert the value of the new node
+
+			//Assign it the value given
 			t->data = value;
-			//assign the value of the new node's next to p's next to insert it into the spot
-			t->next = p->next;
-			
-			//t isnt technically in the link yet, assigning p's next to t will include it in the link officially
-			p->next = t;
-		};
+
+			//the new node's next should be first
+			//first should be the new node
+			t->next = first;
+			first = t;
+		}
+		else if (position > 0) {
+
+			for (int i = 0; i < position - 1 && p != NULL; i++) {
+
+				p = p->next;
+
+			}
+			if (p != NULL) {
+
+				std::cout << "Inserting into Linked List -- Position was greater than 0" << '\n';
+
+				struct Node* t = new struct Node;
+				//insert the value of the new node
+				t->data = value;
+				//assign the value of the new node's next to p's next to insert it into the spot
+				t->next = p->next;
+
+				//t isnt technically in the link yet, assigning p's next to t will include it in the link officially
+				p->next = t;
+			};
+		}
+
+
 	}
 };
 
@@ -391,7 +405,7 @@ int main() {
 	createLinkedList(A, 9);
 	displayLinkedList(first);
 	//linearSearchLinkedListMoveToHead(first, 20);
-	insertIntoLinkedList(first, 4, 99);
+	insertIntoLinkedList(first, 10, 99);
 	displayLinkedList(first);
 
 
