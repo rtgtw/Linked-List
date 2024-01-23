@@ -8,7 +8,8 @@ struct Node {
 	int data;
 	struct Node* next;
 
-}*first = NULL;
+}*first = NULL,
+*last=NULL;
 
 
 
@@ -299,9 +300,9 @@ void insertIntoLinkedList(struct Node* p, int position, int value) {
 	if (position < 0 || position > countOfLinkedList(p)) {
 
 		std::cout << "INVALID INDEX" << '\n';
-	
+		return;
 	}
-	else {
+	
 
 
 
@@ -348,15 +349,52 @@ void insertIntoLinkedList(struct Node* p, int position, int value) {
 				p->next = t;
 			};
 		}
-
-
-	}
+	
 };
 
 
+//Insert Last
+void insertLastLinkedList(int value) {
+	//first and last are both global variables
 
 
+	if (first == NULL) {
 
+		//Create a new node
+		struct Node* t = new struct Node;
+
+		//Assign t data the value of the parameter
+		t->data = value;
+		t->next = NULL;
+
+		//Now first and last pointers are both pointing on the first node
+		first = t;
+		last = t;
+
+	}
+	else {
+
+
+		struct Node* t = new struct Node;
+
+		//Assign it the value
+		t->data = value;
+
+		//Make the new node's next link(node) null since its the last node
+		t->next = NULL;
+
+		//Make last's next link to this new node
+		//Not first because the first should be at the first node
+		//Last is the one that we want to bring to last
+		//last's next is ALSO first's next, thats the tricky part here, and its a pointer so its going off of address
+		//thats why this works
+		last->next = t;
+
+		//Now we can change last to the new node 
+		last = t;
+	}
+
+};
 
 
 
@@ -401,11 +439,16 @@ int main() {
 	//linearSearchLinkedListMoveToHead(first, 10);
 	//displayLinkedList(first);
 	//Linear Search on a linked list w/ move to head capabilities
-	int A[] = { 3,5,7,10,15,8,12,20,2 };
-	createLinkedList(A, 9);
+	//int A[] = { 3,5,7,10,15,8,12,20,2 };
+	//createLinkedList(A, 9);
 	displayLinkedList(first);
 	//linearSearchLinkedListMoveToHead(first, 20);
-	insertIntoLinkedList(first, 10, 99);
+	//insertIntoLinkedList(first, 0, 99);
+	//insertIntoLinkedList(first, 1, 22);
+	insertLastLinkedList(500);
+	insertLastLinkedList(502);
+	insertLastLinkedList(999);
+	insertIntoLinkedList(first, 1, 22222);
 	displayLinkedList(first);
 
 
