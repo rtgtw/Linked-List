@@ -11,6 +11,8 @@ struct Node {
 }*first = NULL;
 
 
+
+
 void displayLinkedList(struct Node *p) {
 
 	//Create a while loop that continues only if the next node pointing is pointing at another node and is not null
@@ -48,8 +50,6 @@ void displayLinkedListRecursively(struct Node* p) {
 };
 
 
-
-
 void displayLinkedListInReverseRecursively(struct Node* p) {
 
 	//Recursively iterate through a Linked List and display the elements
@@ -65,9 +65,6 @@ void displayLinkedListInReverseRecursively(struct Node* p) {
 
 	}
 };
-
-
-
 
 
 
@@ -107,9 +104,6 @@ void createLinkedList(int A[], int n) {
 		//INTO the t node since first is pointing at it now, and we can repeat this process
 		//We are essentially using last as a buffer to create new links
 		last = t;
-
-
-
 	 }
 }
 
@@ -123,40 +117,87 @@ int countOfLinkedList(struct Node* p) {
 		p = p->next;
 
 	}
-
 	return count;
 }
 
 
 int countOfLinkedListRecursively(struct Node* p) {
 
-
-	
 	if (p == 0) {
 		return 0;
 	}
-
 	else
 		return  countOfLinkedListRecursively(p->next) + 1 ;
-
 }
 
 
+void sumOfLinkedList(struct Node* p) {
+
+	int sum = 0;
+
+	while (p != NULL) {
+
+		sum = sum + p->data;
+		
+		p = p->next;
+
+	}
+	std::cout << "Sum: " << sum << '\n';
+
+};
 
 
 
+int sumOfLinkedListRecursively(struct Node* p) {
+	//Return 0 if p == NULL
+	if (p == 0) {
+
+		return 0;
+	}
+	//Recursive function so call itself, but also add the data for the return
+	//We also want to call the next node with p->next
+	else
+		return sumOfLinkedListRecursively(p->next) + p->data;
+};
+
+
+int maxNodeInLinkedList(struct Node* p) {
+
+	int max = 0;
+
+	while (p != NULL) {
+
+		if (p->data > max) {
+
+			max = p->data;
+		}
+
+		p = p->next;
+	}
+	return max;
+};
+
+
+ 
 
 
 int main() {
 
-	int A[] = { 3,5,7,10,15 };
-
-	createLinkedList(A, 5);
+	int A[] = { 3,5,7,10,15,8,12,20};
+	createLinkedList(A, 8);
 	//display(first);
 	//displayLinkedListRecursively(first);
 	//displayLinkedListInReverseRecursively(first);
 	//std::cout << "Number of nodes: " << countOfLinkedList(first);
-	std::cout << "Number of nodes: " << countOfLinkedListRecursively(first);
+	std::cout << "Number of nodes: " << countOfLinkedListRecursively(first) << '\n';
+	//sumOfLinkedList(first);
+	std::cout << "Sum of nodes: " << sumOfLinkedListRecursively(first) << '\n';
+	std::cout << "Max node: " << maxNodeInLinkedList(first) << '\n';
+
+
+
+
+
 
 	return 0;
 }
