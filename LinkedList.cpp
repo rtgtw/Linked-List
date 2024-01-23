@@ -293,6 +293,51 @@ struct Node* linearSearchLinkedListMoveToHead(struct Node* p, int key) {
 
 
 
+void insertIntoLinkedList(struct Node* p, int position, int value) {
+	//There are two insertion points, the first node
+	//And every node after the first node
+
+	//Assign Node P to first in order to represent the first node
+	p = first;
+
+	//First node
+	if (position == 0) {
+
+	std::cout << "Inserting into Linked List -- Position was the first one" << '\n';
+
+		//Create a new node
+		struct Node* t = new struct Node;
+
+		//Assign it the value given
+		t->data = value;
+
+		//the new node's next should be first
+		//first should be the new node
+		t->next = first;
+		first = t;
+	}
+	else if (position > 0) {
+
+		for (int i = 0; i < position - 1 && p != NULL; i++) {
+
+			p = p->next;
+
+		}
+		if (p != NULL) {
+			
+			std::cout << "Inserting into Linked List -- Position was greater than 0" <<'\n';
+
+			struct Node* t = new struct Node;
+			//insert the value of the new node
+			t->data = value;
+			//assign the value of the new node's next to p's next to insert it into the spot
+			t->next = p->next;
+			
+			//t isnt technically in the link yet, assigning p's next to t will include it in the link officially
+			p->next = t;
+		};
+	}
+};
 
 
 
@@ -341,21 +386,12 @@ int main() {
 	//linearSearchLinkedListRecursively(first, 99);
 	//linearSearchLinkedListMoveToHead(first, 10);
 	//displayLinkedList(first);
-
-
-
-
-
-
-
-
-
-
 	//Linear Search on a linked list w/ move to head capabilities
 	int A[] = { 3,5,7,10,15,8,12,20,2 };
 	createLinkedList(A, 9);
 	displayLinkedList(first);
-	linearSearchLinkedListMoveToHead(first, 20);
+	//linearSearchLinkedListMoveToHead(first, 20);
+	insertIntoLinkedList(first, 4, 99);
 	displayLinkedList(first);
 
 
