@@ -357,8 +357,11 @@ void insertIntoLinkedList(struct Node* p, int position, int value) {
 void insertLastLinkedList(int value) {
 	//first and last are both global variables
 
+	struct Node* p = NULL;
 
 	if (first == NULL) {
+
+
 
 		//Create a new node
 		struct Node* t = new struct Node;
@@ -388,6 +391,36 @@ void insertLastLinkedList(int value) {
 		//Last is the one that we want to bring to last
 		//last's next is ALSO first's next, thats the tricky part here, and its a pointer so its going off of address
 		//thats why this works
+
+
+
+	//----------------------------------------------------------------
+	// 
+	// This section is for if we ALREADY have nodes inside of a linked list 
+	// This code wont work since last is NULL by default
+	// This allows us to iterate through the linked list with p
+	//find out where the last node in the linked list is, and assign it to last
+	// if last isnt null then we do not have to do this step
+	//If last is NULL then we need to link it to a linked list (first)
+		if (last == NULL) {
+
+			p = first;
+
+			for (int i = 0; i < countOfLinkedList(first) - 1; i++) {
+				p = p->next;
+			}
+			
+			last = p;
+			last->next = t;
+			last = t;
+			
+			return;
+
+		}
+	//----------------------------------------------------------------
+
+
+
 		last->next = t;
 
 		//Now we can change last to the new node 
@@ -439,13 +472,13 @@ int main() {
 	//linearSearchLinkedListMoveToHead(first, 10);
 	//displayLinkedList(first);
 	//Linear Search on a linked list w/ move to head capabilities
-	//int A[] = { 3,5,7,10,15,8,12,20,2 };
-	//createLinkedList(A, 9);
-	displayLinkedList(first);
+	int A[] = { 3,5,7,10,15,8,12,20,2 };
+	createLinkedList(A, 9);
+	//displayLinkedList(first);
 	//linearSearchLinkedListMoveToHead(first, 20);
 	//insertIntoLinkedList(first, 0, 99);
 	//insertIntoLinkedList(first, 1, 22);
-	insertLastLinkedList(500);
+	//insertLastLinkedList(500);
 	insertLastLinkedList(502);
 	insertLastLinkedList(999);
 	insertIntoLinkedList(first, 1, 22222);
