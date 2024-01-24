@@ -431,6 +431,60 @@ void insertLastLinkedList(int value) {
 
 
 
+void insertElementInSortedLinkedList(struct Node* p, int value) {
+
+	//Create tail pointer
+	struct Node* tail = NULL;
+
+	//Create new node
+	struct Node* n = new struct Node;
+	n->data = value;
+	n->next = NULL;
+
+	
+
+	//now we have to insert this new node
+
+	//edge case if its the very first node inside of the linked list
+
+	if (first == NULL) {
+
+		first = n;
+	}
+	else {
+
+		while (p != NULL && p->data < value) {
+
+			//we need use the tail pointer and the p pointer
+			tail = p;
+			p = p->next;
+
+		}
+
+		//when found we need to use the tail pointer to insert
+		//but first we have to determine if it is the first node or not
+
+		if (p == first) {
+			n->next = p;
+			first = n;
+
+		}
+		else {
+			tail->next = n;
+			n->next = p;
+		}
+
+
+
+	}
+
+
+
+
+
+
+};
+
 
 
 
@@ -472,18 +526,19 @@ int main() {
 	//linearSearchLinkedListMoveToHead(first, 10);
 	//displayLinkedList(first);
 	//Linear Search on a linked list w/ move to head capabilities
-	int A[] = { 3,5,7,10,15,8,12,20,2 };
-	createLinkedList(A, 9);
+	int A[] = { 10,20,30,40,50 };
+	createLinkedList(A, 5);
 	//displayLinkedList(first);
 	//linearSearchLinkedListMoveToHead(first, 20);
 	//insertIntoLinkedList(first, 0, 99);
 	//insertIntoLinkedList(first, 1, 22);
 	//insertLastLinkedList(500);
-	insertLastLinkedList(502);
-	insertLastLinkedList(999);
-	insertIntoLinkedList(first, 1, 22222);
+	//insertLastLinkedList(502);
+	//insertLastLinkedList(999);
+	//insertIntoLinkedList(first, 1, 22222);
+	//displayLinkedList(first);
+	insertElementInSortedLinkedList(first,51);
 	displayLinkedList(first);
-
 
 
 
