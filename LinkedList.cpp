@@ -431,7 +431,7 @@ void insertLastLinkedList(int value) {
 
 
 
-void insertElementInSortedLinkedList(struct Node* p, int value) {
+void insertNodeInSortedLinkedList(struct Node* p, int value) {
 
 	//Create tail pointer
 	struct Node* tail = NULL;
@@ -444,7 +444,6 @@ void insertElementInSortedLinkedList(struct Node* p, int value) {
 	
 
 	//now we have to insert this new node
-
 	//edge case if its the very first node inside of the linked list
 
 	if (first == NULL) {
@@ -465,7 +464,7 @@ void insertElementInSortedLinkedList(struct Node* p, int value) {
 		//but first we have to determine if it is the first node or not
 
 		if (p == first) {
-			n->next = p;
+			n->next = first;
 			first = n;
 
 		}
@@ -473,23 +472,79 @@ void insertElementInSortedLinkedList(struct Node* p, int value) {
 			tail->next = n;
 			n->next = p;
 		}
-
-
-
 	}
-
-
-
-
-
-
+ 
 };
 
 
 
+void deleteNodeFromLinkedList(struct Node* p, int position) {
+
+	//We need to create a tail node
+	struct Node* tail = NULL;
 
 
 
+	//First we check to see if we are deleting the first node
+
+	if (position == 1) {
+
+		//P is = to the first node right now, set it to the next node
+		p = p->next;
+
+		//set tail to the first node
+		tail = first;
+		//get the value within the first node
+		int x = tail->data;
+
+		//set the first node to p which is not hte second node
+		first = p;
+
+		//physically delete the former first node
+		delete tail;
+
+	}
+	else {
+
+		if (p != NULL && position <= countOfLinkedList(p)) {
+
+
+			for (int i = 0; i < position - 1; i++) {
+				
+				tail = p;
+				p = p->next;
+			}
+
+			//Delete the node
+			tail->next = p->next;
+			int y = p->data;
+			delete p;
+
+		}
+	}
+}
+
+
+
+bool checkIfLinkedListIsSorted(struct Node* p) {
+
+	int x = p->data - 10;
+
+	while (p != NULL) {
+
+		if (p->data < x) {
+			std::cout << "LINKED LIST IS NOT SORTED" << '\n';
+			return false;
+		}
+
+		x = p->data;
+		p = p->next;
+	}
+
+	std::cout << "LINKED LIST IS SORTED" << '\n';
+	return true;
+
+}
 
 
 
@@ -537,10 +592,12 @@ int main() {
 	//insertLastLinkedList(999);
 	//insertIntoLinkedList(first, 1, 22222);
 	//displayLinkedList(first);
-	insertElementInSortedLinkedList(first,51);
+	//insertNodeInSortedLinkedList(first,51);
+	//displayLinkedList(first);
+	//deleteNodeFromLinkedList(first, 6);
+	insertLastLinkedList(5);
 	displayLinkedList(first);
-
-
+	checkIfLinkedListIsSorted(first);
 
 
 
