@@ -528,19 +528,23 @@ void deleteNodeFromLinkedList(struct Node* p, int position) {
 
 bool checkIfLinkedListIsSorted(struct Node* p) {
 
+	//We are giving x an initial value lower than the first node's data
+	//so when we make contact with the first node,, x is automatically lower than first node
 	int x = p->data - 10;
 
+	//While loop to iterate through the full linked list
 	while (p != NULL) {
 
+		//Checking to see if a node value is less than x, that means it is not sorted
 		if (p->data < x) {
 			std::cout << "LINKED LIST IS NOT SORTED" << '\n';
 			return false;
 		}
-
+	//if the node is greater than x then set x as the nodes data and move to the next node
 		x = p->data;
 		p = p->next;
 	}
-
+	//if it comes out of the while loop then its sorted
 	std::cout << "LINKED LIST IS SORTED" << '\n';
 	return true;
 
@@ -598,18 +602,6 @@ int main() {
 	insertLastLinkedList(5);
 	displayLinkedList(first);
 	checkIfLinkedListIsSorted(first);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
